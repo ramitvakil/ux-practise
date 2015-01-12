@@ -1,0 +1,72 @@
+a.shopping-list {	
+	width: 32px;
+	height: 32px;	
+	background: url("download.jpg") no-repeat top left;
+}
+
+a.cart {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	position: relative;	
+	background: url("shopping-cart-256.png") no-repeat top left;
+}
+.input-group-addon{
+	background-color: #FFAC00;
+}
+.input-group{
+	padding-top:10px;
+}
+header{
+	padding:5px;
+}
+a.cart .badge {
+	border-radius: 15px;
+	color: #000;
+	margin-left: 20px;
+	background-color: orangered;
+}
+.cartSection{
+	margin-left:-15px;
+}
+.cartSection,
+.loginSection{
+	display:inline-flex;
+}
+.loginSection{
+	margin-left: 12px;
+	vertical-align: top;
+	margin-top: 2px;
+}
+.button.sign-in {
+	color: #fff;
+	background-color: #FFAC00;
+	border-color: transparent;
+	outline: 0 none;
+	text-decoration: none;
+}
+.button.register {
+	color: #fff;
+	background-color: #FF6600;
+	border-color: transparent;
+	outline: 0 none;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+.button {
+	display: inline-block;
+	text-transform: uppercase;
+	color: #589d3e;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 500;
+	height: 30px;
+	line-height: 34px;
+	padding: 0 10px;
+	vertical-align: middle;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 3px;
+	border: 1px solid transparent;
+}
