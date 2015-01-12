@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Default-Style" content="plain">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Store Front Header</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- My Style -->
+	<link rel="stylesheet" type="text/css" href="myStyle.css" title="plain">
+	<link rel="stylesheet" type="text/css" href="myColorfulStyle.css" title="colorful">
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!--Modernizr-->
+	<script src="content/js/libs/modernizr.custom.js"></script>
+	
+	<script>
+		$(document).ready(function() {   
+        	var sideslider = $('[data-toggle=collapse-side]');
+        	var sel = sideslider.attr('data-target');
+        	var sel2 = sideslider.attr('data-target-2');
+       		sideslider.click(function(event){
+            	$(sel).toggleClass('in');
+            	$(sel2).toggleClass('out');
+        	});
+       		
+       		
+       		$(".sidebar .filter-section .category").click(function() {
+       			$(this).toggleClass('changed');
+       		});
+       		
+       		
+       		$(".main .topbar .options ul.sort li").click(function() {
+       			$(this).toggleClass('desc');
+       		});
+       		
+       		
+       		$(".main .topbar .options ul.view li.big").click(function() {
+       			$(".main ul.results > li").addClass('bigView');
+       			$(".main ul.results > li > a > img").addClass('bigView');
+       		});
+       		
+       		$(".main .topbar .options ul.view li.small").click(function() {
+       			$(".main ul.results > li").removeClass('bigView');
+       			$(".main ul.results > li > a > img").removeClass('bigView');
+       		});
+       		
+       		
+       		$('.btn.next').click(function() {
+       			var target = $(this).data('target');
+       		    $(target).prop('class', 'modal fade').addClass('right');       		    
+       		 	$(this).parents(".modal").prop('class', 'modal fade').addClass('left');
+       		});
+       		
+       		$('.btn.back').click(function() {
+       			var target = $(this).data('target');
+       			$(target).prop('class', 'modal fade').addClass('left');       		    
+       		 	$(this).parents(".modal").prop('class', 'modal fade').addClass('right');
+       		});
+       		
+       		
+       		/*
+       		$(window).on('scroll', function() {
+       			if($(window).scrollTop() > 120) {
+       				$('.container .navbar').addClass('small');
+       			} else {
+       				if($('.container .navbar').hasClass('small')) {
+       					$('.container .navbar').removeClass('small');
+       				}
+       			}
+       		});
+       		*/
+    	});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a class="logo" href="#/dashboard"><img src="store-front.png" alt="Store Front"/></a>
+			<div class="actions">
+				<a class="search">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>
+				<a class="shopping-list"></a>
+				<a class="cart">
+					<div class="badge">2</div>
+				</a>
+				<a class="user"></a>
+				<div class="login">
+					<a class="sign-in button outline" href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> <span class="responsive"> Login</span></a>
+					
+					<!-- Login Modal -->
+					<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Login</h4>
+      							</div>
+      							<div class="modal-body">
+        							<form>
+          								<div class="form-group">
+            								<label for="username" class="control-label">Username:</label>
+            								<input type="text" class="form-control" id="username">
+          								</div>
+          								<div class="form-group">
+            								<label for="password" class="control-label">Password:</label>
+            								<input type="password" class="form-control" id="password">
+          								</div>
+        							</form>
+      							</div>
+      							<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="button" class="btn btn-primary">Login</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+					
+					<a class="register button fill" href="#" data-toggle="modal" data-target="#registerModal1"><span class="glyphicon glyphicon-user"></span> <span class="responsive">Sign Up</span></a>
+				
+					<!-- Register Modal 1 -->
+					<div class="modal fade" id="registerModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Register  &gt;  Account Information</h4>
+      							</div>
+      							<div class="modal-body">
+        							<form>
+        								<div class="form-group">
+            								<label for="username" class="control-label">I am a/an:</label>
+            								<select name="userType" class="form-control">
+            									<option value="user">User</option>
+            									<option value="organization">Organization</option>
+            								</select>
+          								</div>
+          								<div class="form-group">
+            								<label for="email" class="control-label">Email Id:</label>
+            								<input type="email" class="form-control" id="email">
+          								</div>
+          								<div class="form-group">
+            								<label for="username" class="control-label">Username:</label>
+            								<input type="text" class="form-control" id="username">
+          								</div>
+          								<div class="form-group">
+            								<label for="password" class="control-label">Password:</label>
+            								<input type="password" class="form-control" id="password">
+          								</div>
+          								<div class="form-group">
+            								<label for="confirmPassword" class="control-label">Confirm Password:</label>
+            								<input type="password" class="form-control" id="confirmPassword">
+          								</div>
+        							</form>
+      							</div>
+      							<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="button" class="btn btn-primary next" data-dismiss="modal" data-toggle="modal" data-target="#registerModal2">Next</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+				
+					<!-- Register Modal 2 -->
+					<div class="modal fade" id="registerModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Register  &gt;  Personal Information</h4>
+      							</div>
+      							<div class="modal-body">
+        							<form>
+          								<div class="form-group">
+            								<label for="firstName" class="control-label">First Name:</label>
+            								<input type="text" class="form-control" id="firstName">
+          								</div>
+          								<div class="form-group">
+            								<label for="middleName" class="control-label">Middle Name:</label>
+            								<input type="text" class="form-control" id="middleName">
+          								</div>
+          								<div class="form-group">
+            								<label for="lastName" class="control-label">Last Name:</label>
+            								<input type="text" class="form-control" id="lastName">
+          								</div>
+          								 <div class="form-group">
+            								<label for="identificationNo" class="control-label">Identification No:</label>
+            								<input type="text" class="form-control" id="identificationNo">
+          								</div>
+          								 <div class="form-group">
+            								<label for="contactNo" class="control-label">Contact No:</label>
+            								<input type="text" class="form-control" id="contactNo">
+          								</div>
+        							</form>
+      							</div>
+      							<div class="modal-footer">
+      								<button type="button" class="btn btn-primary back" style="float:left" data-dismiss="modal" data-toggle="modal" data-target="#registerModal1">Back</button>
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="button" class="btn btn-primary next" data-dismiss="modal" data-toggle="modal" data-target="#registerModal3">Next</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+				
+					<!-- Register Modal 3 -->
+					<div class="modal fade" id="registerModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Register  &gt;  Shipping Address</h4>
+      							</div>
+      							<div class="modal-body">
+        							<form>
+          								<div class="form-group">
+            								<label for="addressLine1" class="control-label">Address Line 1:</label>
+            								<input type="text" class="form-control" id="addressLine1">
+          								</div>
+          								<div class="form-group">
+            								<label for="addressLine2" class="control-label">Address Line 2:</label>
+            								<input type="text" class="form-control" id="addressLine2">
+          								</div>
+          								<div class="form-group">
+            								<label for="city" class="control-label">City:</label>
+            								<input type="text" class="form-control" id="city">
+          								</div>
+          								 <div class="form-group">
+            								<label for="state" class="control-label">State:</label>
+            								<input type="text" class="form-control" id="state">
+          								</div>
+          								 <div class="form-group">
+            								<label for="pinCode" class="control-label">Pin Code:</label>
+            								<input type="text" class="form-control" id="pinCode">
+          								</div>
+          								 <div class="form-group">
+            								<label for="country" class="control-label">Country:</label>
+            								<input type="text" class="form-control" id="country">
+          								</div>
+        							</form>
+      							</div>
+      							<div class="modal-footer">
+      								<button type="button" class="btn btn-primary back" style="float:left" data-dismiss="modal" data-toggle="modal" data-target="#registerModal2">Back</button>
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="button" class="btn btn-primary next" data-dismiss="modal" data-toggle="modal" data-target="#registerModal4">Next</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+					
+					
+					<!-- Register Modal 4 -->
+					<div class="modal fade" id="registerModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Register  &gt;  Billing Address</h4>
+      							</div>
+      							<div class="modal-body">
+        							<form>
+          								<div class="form-group">
+            								<label for="addressLine1" class="control-label">Address Line 1:</label>
+            								<input type="text" class="form-control" id="addressLine1">
+          								</div>
+          								<div class="form-group">
+            								<label for="addressLine2" class="control-label">Address Line 2:</label>
+            								<input type="text" class="form-control" id="addressLine2">
+          								</div>
+          								<div class="form-group">
+            								<label for="city" class="control-label">City:</label>
+            								<input type="text" class="form-control" id="city">
+          								</div>
+          								 <div class="form-group">
+            								<label for="state" class="control-label">State:</label>
+            								<input type="text" class="form-control" id="state">
+          								</div>
+          								 <div class="form-group">
+            								<label for="pinCode" class="control-label">Pin Code:</label>
+            								<input type="text" class="form-control" id="pinCode">
+          								</div>
+          								 <div class="form-group">
+            								<label for="country" class="control-label">Country:</label>
+            								<input type="text" class="form-control" id="country">
+          								</div>
+        							</form>
+      							</div>
+      							<div class="modal-footer">
+      								<button type="button" class="btn btn-primary back" style="float:left" data-dismiss="modal" data-toggle="modal" data-target="#registerModal3">Back</button>
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="button" class="btn btn-primary next" data-dismiss="modal">Register</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+				</div>				
+			</div>
+			<div class="query">
+				<select id="category">
+					<option value="">All</option>
+					<option value="">Laptop</option>
+					<option value="">Camera</option>
+					<option value="">Mobile</option>
+					<option value="">Earphone</option>					
+				</select>
+				<input id="search" placeholder="Search for Product" autocomplete="off">
+				<a class="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>
+			</div>
+		</div>
+		<div class="header-border"></div>  
+		<nav class="navbar navbar-inverse">
+  			<div class="nav-container">
+    			<div class="navbar-header">
+      				<button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left">
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span> 
+      				</button>
+    			</div>
+    			<div class="navbar-collapse side-collapse in">
+      				<ul class="nav navbar-nav">      					
+        				<li><a href="#"><span class="glyphicon glyphicon-home" style="color:#FF6600"></span> Home</a></li>
+        				<li><a href="#">All Products</a></li>
+        				<li><a href="#">Computer</a></li> 
+        				<li><a href="#">Camera</a></li>
+        				<li><a href="#">Mobile</a></li>
+        				<li><a href="#">Books</a></li>
+  						<li><a href="#">Clothes</a></li>       				 
+      				</ul>	
+    			</div>
+  			</div>
+		</nav>
+	</div>
+	<div class="container side-collapse-container">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-4">
+				<div class="sidebar">
+					<h3>Filter By</h3>
+					<section class="filter-section">
+							<a class="category" data-toggle="collapse" href="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Categories</a>
+							<ul class="collapse in" id="collapseCategory">
+								<li><input id="c1" type="checkbox"> <label for="c1">Laptop</label></li>
+								<li><input id="c2" type="checkbox"> <label for="c2">Desktop</label></li>
+								<li><input id="c3" type="checkbox"> <label for="c3">Playstation</label></li>
+								<li><input id="c4" type="checkbox"> <label for="c4">Tablet</label></li>
+								<li><input id="c5" type="checkbox"> <label for="c5">Super Computer</label></li>
+								<li><input id="c6" type="checkbox"> <label for="c6">Palmtop</label></li>							
+							</ul>						
+					</section>
+					<section class="filter-section">
+							<a class="category" data-toggle="collapse" href="#collapsePrice" aria-expanded="false" aria-controls="collapseCategory">Price</a>
+							<ul class="collapse in" id="collapsePrice">
+								<li><input id="p1" type="checkbox"> <label for="p1">Rs. 500 and Below</label></li>
+								<li><input id="p2" type="checkbox"> <label for="p2">Rs. 501 - 1000</label></li>
+								<li><input id="p3" type="checkbox"> <label for="p3">Rs. 1001 - 2000</label></li>
+								<li><input id="p4" type="checkbox"> <label for="p4">Rs. 2001 - 4000</label></li>
+								<li><input id="p5" type="checkbox"> <label for="p5">Rs. 4001 - 6000</label></li>							
+							</ul>		
+					</section>
+					<section class="filter-section">
+							<a class="category" data-toggle="collapse" href="#collapseAvailability" aria-expanded="false" aria-controls="collapseCategory">Availability</a>
+							<ul class="collapse in" id="collapseAvailability">
+								<li><input id="a1" type="checkbox"> <label for="a1">Exclude out of stock</label></li>							
+							</ul>		
+					</section>											
+				</div>	
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+				<div class="main">
+					<div class="topbar">
+						<div class="queried-for">
+							<h2 class="q">Apple Laptops</h2>
+							<em> - 45 items</em>
+						</div>
+						<div class="options">
+					  
+							<ul class="view">
+								<label>View: </label>
+								<li class="big"><span class="glyphicon glyphicon-zoom-in"></span></li>
+								<li class="small"><span class="glyphicon glyphicon-zoom-out"></span></li>
+							</ul>
+						 
+							<ul class="sort">
+								<label>Sort:</label>
+								<li>Name</li>
+								<li>Price</li>							
+							</ul>
+						</div>
+					</div>
+					<!--  
+					<div class="row">
+						<div class="compare-items col-sm-10">
+ 	 						<div class="row">
+ 	 							<div class="col-sm-3">
+    								<div class="thumbnail">
+    	  								<img src="laptop1.jpg" alt="...">
+      									<div class="caption">
+        									<p>Apple Mac Pro Retina</p>
+      									</div>
+    								</div>
+  								</div>
+  								<div class="col-sm-3">
+    								<div class="thumbnail">
+    	  								<img src="laptop2.jpg" alt="...">
+      									<div class="caption">
+        									<p>Apple Mac blueberry Black</p>
+      									</div>
+    								</div>
+  								</div>
+  								<div class="col-sm-3">
+    								<div class="thumbnail">
+    	  								<img src="laptop3.jpg" alt="...">
+      									<div class="caption">
+        									<p>Apple Innovative laptop Black</p>
+      									</div>
+    								</div>
+  								</div>  						
+  								<div class="col-sm-3">
+    								<div class="thumbnail">
+    	  								<img src="laptop4.jpg" alt="...">
+      									<div class="caption">
+        									<p>Apple Mac Pro Retina 14 inch</p>
+      									</div>
+    								</div>
+  								</div>
+  							</div>	
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-primary">Compare</button>
+						</div>
+					</div>	
+					-->
+					<ul class="results">
+						<li>
+							<a href="#">
+								<img src="laptop1.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Mac Pro Retina</div>
+							<div class="price">
+								<span class="strike">Rs. 95000</span><span class="userPrice">Rs. 90000</span>	
+							</div>
+							<input id="product1" type="checkbox"> <label for="product1">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li class="out-of-stock">
+							<a href="#">
+								<img src="laptop2.jpg" class="img-responsive" style="opacity:0.4">
+							</a>
+							<span class="out-stock">Out of Stock</span>
+							<div class="product">Apple Mac blueberry Black</div>
+							<div class="price">
+								<span class="strike">Rs. 70000</span><span class="userPrice">Rs. 68500</span>	
+							</div>
+							<input id="product2" type="checkbox"> <label for="product2">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop3.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Innovative laptop Black</div>
+							<div class="price">
+								<span class="strike">Rs. 120000</span><span class="userPrice">Rs. 115000</span>	
+							</div>
+							<input id="product3" type="checkbox"> <label for="product3">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop4.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Mac Pro Retina 14 inch</div>
+							<div class="price">
+								<span class="strike">Rs. 85000</span><span class="userPrice">Rs. 84300</span>	
+							</div>
+							<input id="product4" type="checkbox"> <label for="product4">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop1.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Mac Pro Retina 15 inch</div>
+							<div class="price">
+								<span class="strike">Rs. 97000</span><span class="userPrice">Rs. 89000</span>	
+							</div>
+							<input id="product5" type="checkbox"> <label for="product5">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop2.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Eye Pro Retina</div>
+							<div class="price">
+								<span class="strike">Rs. 150000</span><span class="userPrice">Rs. 147000</span>	
+							</div>
+							<input id="product6" type="checkbox"> <label for="product6">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop3.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple Mac Pro Retina 15 inch black</div>
+							<div class="price">
+								<span class="strike">Rs. 140000</span><span class="userPrice">Rs. 129000</span>	
+							</div>
+							<input id="product7" type="checkbox"> <label for="product7">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<a href="#">
+								<img src="laptop4.jpg" class="img-responsive">
+							</a>
+							<div class="product">Apple innovative Pro Retina</div>
+							<div class="price">
+								<span class="strike">Rs. 65000</span><span class="userPrice">Rs. 62000</span>	
+							</div>
+							<input id="product8" type="checkbox"> <label for="product8">Add to compare</label>
+							<div class="actions">
+								<span class="cart">
+									<div class="icon-cart"></div>
+									<div class="cart-label">Cart</div>
+								</span>
+								<span class="shopping-list">
+									<div class="icon-shopping-list"></div>
+									<div class="shopping-list-label">Shopping list</div>
+								</span>
+								<span class="quotation-list">
+									<div class="quotation-list-label">Add <br>Quotation</div>
+								</span>
+							</div>
+						</li>	
+					</ul>						
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
