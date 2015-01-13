@@ -1,8 +1,8 @@
 <!doctype html>
 <html>	
 	<meta charset="UTF-8">
-	<meta http-equiv="Default-Style" content="plain">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="Default-Style" content="Ramit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Product Details</title>
 
 	<!-- Latest compiled and minified CSS -->
@@ -10,9 +10,9 @@
 
 	<!-- Optional theme -->
 	<!-- My Style -->
-	<link rel="stylesheet" type="text/css" href="myStyle.css" title="Ramit">
+	<link rel="stylesheet" type="text/css" href="myStyle.css" title="plain">
 
-	<link rel="stylesheet" type="text/css" href="myStyle1.css" title="plain">
+	<link rel="stylesheet" type="text/css" href="myStyle1.css" title="Ramit">
 
 	<!-- for backward compatibility-->
 
@@ -36,13 +36,13 @@
 		<div class="container-fluid">
 			<header class="navbar navbar-default">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-			<div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-1">
 				<a href="#" class="logo"><img src="store-front.png" alt="interact edge"></a>
 			</div>
-			<div class="col-lg-5 col-md-5 col-sm-5">			
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">			
     			<div class="input-group">
       				<div class="input-group-btn">
-        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span>
+        				<button id="category" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span>
         				</button>
         				<ul class="dropdown-menu" role="menu">
           					<li><a href="#">All</a></li>
@@ -53,12 +53,12 @@
         				</ul>
       				</div><!-- /btn-group -->
       				<input type="text" id="search" class="form-control" aria-label="Search for Product" placeholder="Search for product">
-      				<span class="input-group-addon"><a><i class="glyphicon glyphicon-search"></i></a></span>
+      				<span class="input-group-addon search-mobile"><a><i class="glyphicon glyphicon-search"></i></a></span>
     			</div><!-- /input-group --> 
 			<!-- 	<input id="search" placeholder="Search for Product" autocomplete="off"> -->
 				
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-xs-offset-5">
 				<div class="input-group cartSection">
 					<a class="shopping-list input-group-btn"></a>
 					<a class="cart">
@@ -67,11 +67,11 @@
 				</div>
 								
 				<div class="input-group loginSection">
-					<button class="sign-in button outline" href="#" data-toggle="modal" data-target="#loginModal">
+					<button class="sign-in button outline" id="login" href="#" data-toggle="modal" data-target="#loginModal">
 						<span class="glyphicon glyphicon-log-in"></span>
 						<span class="responsive"> Login</span>
 					</button>
-					<button class="register button fill" href="#" data-toggle="modal" data-target="#registerModal1">
+					<button  id="sign-in" class="register button fill" href="#" data-toggle="modal" data-target="#registerModal1">
 					<i class="glyphicon glyphicon-user"></i>
 					<span class="responsive">Sign Up</span>
 					</button>
@@ -88,37 +88,31 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Home</a>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home" style="color:#FF6600"></span>Home</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+        <li class="active"><a href="#/dashboard">All Products <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Computer</a></li> 
+        <li><a href="#">Camera</a></li>
+        <li><a href="#">Mobile</a></li>
+        <li><a href="#">Books</a></li>
+  		<li><a href="#">Clothes</a></li>
           </ul>
         </li>
       </ul> 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+      <!--   <li><a href="#">Selfcare</a></li> -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Selfcare <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">My Tickets</a></li>
+            <li><a href="#">My Payments</a></li>
+            <li><a href="#">My orders</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Track Order</a></li>
           </ul>
         </li>
       </ul>
