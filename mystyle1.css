@@ -1,7 +1,7 @@
 a.shopping-list {	
 	width: 32px;
 	height: 32px;	
-	background: url("download.jpg") no-repeat top left;
+	background: url("download.png") no-repeat top left;
 }
 
 a.cart {
@@ -69,4 +69,26 @@ a.cart .badge {
 	text-decoration: none;
 	border-radius: 3px;
 	border: 1px solid transparent;
+}
+@media (max-width:524px){
+	.logo img{
+		display: none;
+	}
+	.logo{
+		background: url(store-front2.png) center;
+		width:32px;
+  		height:35px;  		
+  		display: inline-block;
+	}
+	.input-group{
+		padding-top: 3px;
+	}
+	#login .responsive,
+	#sign-in .responsive{
+		display:none;
+	}
+	
+	.navbar-toggle{
+		margin-right: 4px;
+	}
 }
