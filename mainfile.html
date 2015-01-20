@@ -1,0 +1,427 @@
+<!doctype html>
+<html data-ng-app="hospira"  data-ng-controller="MainController">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Store</title>
+    <!--SEO Meta Tags-->
+    <meta name="description" content="Responsive HTML5 E-Commerce Template" />
+		<meta name="keywords" content="responsive html5 template, e-commerce, shop, bootstrap 3.0, css, jquery, flat, modern" />
+		<meta name="author" content="EdgeVerve Limited" />
+    <!--Mobile Specific Meta Tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	
+    <!--Favicon-->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+	<link rel="icon" href="" type="image/x-icon">  
+    <!--Styles-->
+    <style>
+    	[ng-cloak]
+		{
+  			display: none !important;
+		}
+    </style>
+    <link data-ng-href="content/css/{{cssFile}}" rel="stylesheet" media="screen">
+      <!--Master Slider Styles-->
+    <link href="content/masterslider/style/masterslider_hospira.css" rel="stylesheet" media="screen">
+    <!--Modernizr-->
+	<script src="content/js/libs/modernizr.custom.js"></script>
+    <!--Adding Media Queries Support for IE8-->
+    <!--[if lt IE 9]>
+      <script src="js/plugins/respond.js"></script>
+    <![endif]-->
+    
+  </head>
+
+  <!--Body-->
+  <body id="MainController" data-ng-cloak>
+	<div>  
+  	<!--Login Modal-->
+    <div class="modal fade" id="loginModal" tabindex="-1" data-role="dialog" data-aria-hidden="true" data-ng-controller="LoginController">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"><i class="fa fa-times"></i></button>
+            <h2><span data-msg="Login"></span> <span data-msg="or"></span> <a href="#/register" data-msg="Register"></a></h2>
+           <!--  <p class="large">Use social accounts</p> -->
+            <div class="social-login">
+            	<a class="facebook" href="#"><i class="fa fa-facebook-square"></i></a>
+            	<a class="google" href="#"><i class="fa fa-google-plus-square"></i></a>
+            	<a class="twitter" href="#"><i class="fa fa-twitter-square"></i></a>
+            </div>
+          </div>
+          <div class="modal-body">
+          <div data-ng-show="!isLoggedIn || isLoggedIn === 'false'">
+	            <span data-ng-show="invalidUser" style="color:red;">Username or password is incorrect! Please try again.</span>	            
+	            <form class="login-form" name="loginForm" method="post" data-ng-submit="login()">
+	            <div class="form-group group">
+	            	<label for="log-email" data-msg="username"></label>
+	              <input type="text" class="form-control" name="log-email" id="log-email" data-msg="placeholder|EnterYourUsername" data-ng-model="username" required>
+	           <!--    <a class="help-link" href="#">Forgot Username?</a> -->
+	            </div>
+	            <div class="form-group group">
+	            	<label for="log-password" data-msg="Password"></label>
+	              <input type="text" class="form-control" name="log-password" id="log-password" data-msg="placeholder|EnterYourPassword"  data-ng-model="password" required>
+	
+	            <!--   <a class="help-link" href="#">Forgot password?</a> -->
+	            </div>
+	           <!--  <div class="checkbox">
+	              <label><input type="checkbox" name="remember"> Remember me</label>
+	            </div> -->
+	            <input class="btn btn-success" type="submit" data-msg="value|Login">
+	          </form>
+          </div>        
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- Modal for add to cart -->
+     <div class="modal fade" id="cartModal" tabindex="-1" data-role="dialog" data-aria-hidden="true" data-ng-controller="CartController">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"><i class="fa fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+         	<div id="cartMessage"></div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!--Header-->
+    <header data-offset-top="150" data-stuck="250"><!--data-offset-top is when header converts to small variant and data-stuck when it becomes visible. Values in px represent position of scroll from top. Make sure there is at least 100px between those two values for smooth animation-->
+    
+      <!--Search Form-->
+      <form class="search-form closed" method="get" data-role="form" autocomplete="off">
+      	<div class="container">
+          <div class="close-search"><i class="icon-delete" data-ng-click="searchString=''"></i></div>
+            <div class="form-group">
+              <label class="sr-only" for="search-hd" data-msg="SearchForProduct"></label>
+              <input type="text" class="form-control" name="search-hd" id="search-hd" data-ng-model="searchString" data-msg="placeholder|SearchForProduct">
+              <button type="submit"><i class="icon-magnifier"></i></button>
+          </div>
+        </div>
+      </form>
+      
+    	<!--Split Background-->
+    	<div class="left-bg"></div>
+    <!-- 	<div class="right-bg"></div> -->
+      
+    	<div class="container">
+      	<a class="logo" href="#/dashboard"><img data-ng-src="content/img/{{logoImage}}" alt=""/></a>
+        
+         <!--Language / Currency Switchers-->
+        <ul class="switchers" >
+        	<li data-ng-click="setLanguage('en')"><a href="">En</a></li>
+        	<li data-ng-click="setLanguage('de')"><a href="">Gr</a></li>
+        </ul>
+      
+      	<!--Mobile Menu Toggle-->
+        <div class="menu-toggle"><i class="fa fa-list"></i></div>
+        <div class="mobile-border"><span></span></div>
+        
+        <!--Main Menu-->
+        <nav class="menu">
+          <ul class="main">
+              <!-- Top navigation with sub menus end  -->
+              <li class="hide-sm"><a href="#/dashboard" data-msg="Home"></a></li>         
+          	<li class="has-submenu"  data-ng-show="isLoggedIn"><a href="#/orderList">Orders<i class="fa fa-chevron-down"></i></a>
+			<ul class="submenu">
+          		<li><a href="#/orderList">Check Past Orders</a></li>
+          		<li><a href="#/orderDetail" >Track Your Orders</a></li>
+          	</ul>
+			</li>
+          	<li class="has-submenu"  data-ng-show="isLoggedIn"><a href="#/ticketList">Tickets<i class="fa fa-chevron-down"></i></a>
+          		<ul class="submenu">
+          			<li><a href="#/ticketList" data-msg="MyTickets"></a></li>
+          			<li><a href="#/createTicket" data-msg="CreateTicket"></a></li>
+          	</ul> 	
+          	</li>  
+			<li class="hide-sm"  data-ng-show="isLoggedIn"><a href="#/invoices" data-msg="Invoices"></a></li>
+			<li class="hide-sm"  data-ng-show="isLoggedIn"><a href="#/payments">Payments</a></li>		
+          </ul>          
+          <ul class="catalog">
+          	<li data-ng-class="activeWhen(path()=='/product')"> <a href="#/product/{{allProducts}}" data-msg="AllProducts"></a></li>
+          	<li data-ng-class="activeWhen(path()=='/product')" data-ng-repeat="menu in menuItems"> 
+          		<a href="#/product/{{menu.nodeId}}">{{menu.nodeName}}</a>
+          	</li>
+          </ul>
+        </nav>
+        
+       <!--Toolbar-->
+        <div class="toolbar group">
+          <button class="search-btn btn-outlined-invert"><i class="icon-magnifier"></i></button>
+          <div class="middle-btns">
+            <a class="btn-outlined-invert" href="#/shoppingList" data-ng-show="username"><i class="glyphicon glyphicon-tasks"></i> <span data-msg="ShoppingList"></span></a>
+             <a class="quote-btn btn-outlined-invert" href="#/quotationList" data-ng-show="username"><i class="glyphicon glyphicon-th-list"></i> <span data-msg="QuotationList"></span></a>
+          </div>
+          <div class="cart-btn" id="Cart" data-ng-controller="CartController">
+          	<a class="btn btn-outlined-invert" href="#/shoppingCart"><i class="icon-shopping-cart-content" id="shoppingCartImg"></i><span data-ng-bind="totalProduct()"></span></a>
+            
+            <!--Cart Dropdown-->
+            <div class="cart-dropdown">
+              <span></span><!--Small rectangle to overlap Cart button-->
+              <div class="body">
+              <h3 id="emptyCart" style="display:none;" data-msg="CartEmpty"></h3>
+                <table class="cartContent">
+                  <tr>
+                    <th data-msg="Items" style="width: 45%; padding-bottom:12px;"></th>
+                    <th data-msg="Quantity" style="padding-bottom:12px;"></th>
+                    <th data-msg="Price" style="text-align:center;padding-bottom:12px;"></th>
+                    <th style="text-align:center;padding-bottom:12px;" data-ng-show="tenantPlanValue">Recurring Price</th>                   
+                  </tr>
+                  <tr data-ng-repeat="item in cartItems">
+                    <td><div class="delete" data-ng-click="removeItem($index)"></div>
+                    <a href="#/productDetails/{{item.nodeId}}" data-ng-show="item.productName && item.attributes.PlanID === undefined">{{item.productName}}</a>
+                    <a href="#/planDetails/{{item.attributes.PlanID}}/{{item.nodeId}}" data-ng-show="item.productName && item.attributes.PlanID !== undefined">{{item.productName}}</a>
+                    <a href="#/planDetails/{{item.cpId}}/{{item.nodeId}}" data-ng-show="item.planName">{{item.planName}}</a>               
+                    </td>
+                    <td><input type="text" data-ng-model="item.quantity" data-ng-blur="validateQuantity(item)"></td>
+                    <td class="price">{{item.yourPrice*item.quantity|currency}}</td>
+                    <td class="price" style="text-align:center;" data-ng-show="tenantPlanValue">{{(item.recurringPrice || 0)| currency}}/mo</td>
+                  </tr>
+                </table>
+             <!--    <a  class="btn btn-success btn-xs" style="float:left;" href="" data-ng-click="toggleForm()" data-ng-show="username && cartItems.length !== 0">Convert to Shopping list</a> -->
+                 
+                <form class="ajax-form" name="shoppingListForm" id="shoppingListFormCart" style="right:100px;top:1px;" data-ng-submit="addItemToCategory()">
+      					<h3>Add to Shopping List</h3>
+      					<button type="button" class="close" style="position:absolute;top:0;right:0;color:#694285" data-ng-click="toggleForm()" data-dismiss="modal" data-aria-hidden="true"><i class="fa fa-times"></i></button>
+        				<p data-ng-show="addSuccessful" style="color:#006400;font-weight:bold;"">Products added successfully to the list</p>
+        				<p data-ng-show="duplicateList" style="color:red;font-weight:bold;">A list with that name already exists. Please Choose another name.</p>        					
+        				<div class="form-group">
+        					<label for="list">Select a List</label>
+          					<select class="form-control" id="categoryCart">
+          						<option value="">-- Select --</option>
+          						<option data-ng-repeat="list in shoppingLists" value="{{list.name}}">{{list.name}}</option>
+          					</select>
+        					</div>
+        					<div class="form-group">
+        						<label for="newList">Create a new List and Add</label>
+         	 					<input class="form-control input-sm" type="text" id="newCategoryCart" placeholder="Enter list name">
+        					</div>
+        				
+        					<div class="response-holder">
+        						
+        					</div>
+        					
+        					<input class="btn btn-primary btn-sm btn-block" type="submit" value="Add">
+      			</form>
+      			
+                <div class="total cartContent cartTotal" id="cartTotal"  data-ng-bind="total()|currency"> </div>
+              </div>
+              <div class="footer group" data-ng-show="cartItems.length !== 0">
+                <div class="buttons">
+                  <a class="btn btn-outlined-invert" href="#/checkout"><i class="icon-download" ></i>Checkout</a>
+			<!-- 	  <a class="btn btn-outlined-invert"  data-ng-click="undoCart()"><i class="icon-shopping-cart-content"></i>Undo Cart</a> -->
+                  <a class="btn btn-outlined-invert"  data-ng-click="removeAllItem()"><i class="icon-shopping-cart-content"></i>Clear Cart</a>
+                
+                  <a class="btn btn-outlined-invert"  data-ng-click="toggleForm()" data-ng-show="username && cartItems.length !== 0">Convert to Shopping list</a>
+                
+                </div>
+              </div>
+            </div>
+            <!--Cart Dropdown Close-->
+          </div>
+           <div class="middle-btns">           
+            <a class="login-btn btn-outlined-invert" href="" data-toggle="modal" data-ng-hide="username" data-target="#loginModal"><i class="icon-profile"></i> <span data-msg="Login"></span></a>
+           	<a class="login-btn btn-outlined-invert" href="#/accountDetails" data-toggle="modal" data-ng-show="username"><i class="icon-profile"></i> <span data-msg="Hi"></span><span>!&nbsp;{{username}}</span></a>
+
+           	<a class="logout-btn btn-outlined-invert" href="" data-ng-show="username" data-ng-click="logout()"><i class="glyphicon glyphicon-off"></i> <span data-msg="Logout"></span></a>
+			
+           </div>
+        </div>          
+        <!--Toolbar Close-->
+      </div>   
+    </header><!--Header Close-->
+    
+    <!--Page Content-->
+     <div class="page-content">
+     	<div data-ng-view=""></div>
+    </div>
+    <!--Page Content Close--> 
+    <!--Sticky Buttons-->
+    <div class="sticky-btns">
+    	<form class="quick-contact ajax-form" method="post" name="quick-contact">
+      	<h3>Contact us</h3>
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
+        <div class="form-group">
+        	<label for="qc-name">Full name</label>
+          <input class="form-control input-sm" type="text" name="name" id="qc-name" placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+        	<label for="qc-email">Email</label>
+          <input class="form-control input-sm" type="email" name="email" id="qc-email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+        	<label for="qc-message">Your message</label>
+          <textarea class="form-control input-sm" name="message" id="qc-message" placeholder="Enter your message"></textarea>
+        </div>
+        <!-- Validation Response -->
+        <div class="response-holder"></div>
+        <!-- Response End -->
+        <input class="btn btn-success btn-sm btn-block" type="submit" value="Send">
+      </form>
+    	<span id="qcf-btn"><i class="fa fa-envelope"></i></span>
+      <span id="scrollTop-btn"><i class="fa fa-chevron-up"></i></span>
+    </div>
+    <!--Sticky Buttons Close-->
+    
+    <!--Subscription Widget-->
+    <section class="subscr-widget">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-8 col-sm-8">
+            <h2 class="light-color">Subscribe to our news</h2>
+            
+            <!--Mail Chimp Subscription Form-->
+            <form class="subscr-form" data-role="form" action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=d704057a31" target="_blank" method="post" autocomplete="off">
+              <div class="form-group">
+                <label class="sr-only" for="subscr-name">Enter name</label>
+                <input type="text" class="form-control" name="FNAME" id="subscr-name" placeholder="Enter name" required>
+                <button class="subscr-next"><i class="icon-arrow-right"></i></button>
+              </div>
+              <div class="form-group fff hidden" >
+                <label class="sr-only" for="subscr-email">Enter email</label>
+                <input type="email" class="form-control" name="EMAIL" id="subscr-email" placeholder="Enter email" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div class="subscriptionBot"><input type="text" name="b_168a366a98d3248fbc35c0b67_d704057a31" tabindex="-1" value=""></div>
+                <button type="submit" id="subscr-submit"><i class="icon-check"></i></button>
+              </div>
+            </form>
+            <!--Mail Chimp Subscription Form Close-->
+            <p class="p-style2">Please fill the field before continuing</p>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1">
+          <!--   <p class="p-style3">Hospira is the world's leading provider of injectable drugs and infusion technologies, and a global leader in biosimilars. Through our broad, integrated portfolio, Hospira is uniquely positioned to Advance Wellness by improving patient and caregiver safety while reducing healthcare costs.</p> -->
+          </div>
+        </div>
+      </div>
+    </section><!--Subscription Widget Close-->    
+  	<!--Footer-->
+    <footer class="footer">
+    	<div class="container">
+      	<div class="row">
+        	<div class="col-lg-5 col-md-5 col-sm-5">
+          	<div class="info">
+              <a class="logo" href="index.html"><img data-ng-src="content/img/{{logoImage}}" alt=""/></a>         
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+          	<h2>Latest news</h2>
+            <ul class="list-unstyled">
+            	<!-- <li>17 Nov <a href>Hospira Mourns Passing of Founding Board Member Dr. Connie R. Curran</a></li>
+            	<li>06 Nov <a href>Hospira Reports Third-Quarter 2014 Results</a></li>
+            	<li>05 Nov <a href>Hospira Announces U.S. Launch of Generic Paricalcitol Injection</a></li>
+            	<li>15 Aug <a href>Hospira to Present at the Morgan Stanley Global Healthcare Conference</a></li> -->
+            </ul>
+          </div>
+          <div class="contacts col-lg-3 col-md-3 col-sm-3">
+          	<h2>Contacts</h2>
+           <!--  <p class="p-style3">
+            	Hospira Inc.<br/>
+           Lake Forest, Illinois, USA <br/>
+              <a href="mailto:mail@hospira.com">SupportServices@hospira.com</a><br/>
+              +1-877-946-7747<br/>
+              +1-800-241-4002<br/>
+            </p> -->
+          </div>
+        </div>
+        <div class="copyright">
+        	<div class="row">
+          	<div class="col-lg-7 col-md-7 col-sm-7">
+              <p>&copy; 2014. All Rights Reserved.</p>
+            </div>
+          	<div class="col-lg-5 col-md-5 col-sm-5">
+            	<!-- <div class="payment">
+                <img src="content/img/payment/visa.png" alt="Visa"/>
+                <img src="content/img/payment/paypal.png" alt="PayPal"/>
+                <img src="content/img/payment/master.png" alt="Master Card"/>
+                <img src="content/img/payment/discover.png" alt="Discover"/>
+                <img src="content/img/payment/amazon.png" alt="Amazon"/>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Footer Close-->
+    </div>
+    <!--Javascript (jQuery) Libraries and Plugins-->
+		<script src="content/js/libs/jquery-1.11.1.min.js"></script>
+		<script src="content/js/libs/jquery-ui-1.10.4.custom.min.js"></script>
+    	<script src="content/js/libs/jquery.easing.min.js"></script>
+		<script src="content/js/plugins/bootstrap.min.js"></script>
+		<script src="content/js/plugins/smoothscroll.js"></script>
+		<script src="content/js/plugins/jquery.validate.min.js"></script>
+		<script src="content/js/plugins/icheck.min.js"></script>
+		<script src="content/js/plugins/jquery.placeholder.js"></script>
+		<script src="content/js/plugins/jquery.stellar.min.js"></script>
+		<script src="content/js/plugins/jquery.touchSwipe.min.js"></script>
+		<script src="content/js/plugins/jquery.shuffle.min.js"></script>
+    	<script src="content/js/plugins/lightGallery.min.js"></script>
+    	<script src="content/js/plugins/owl.carousel.min.js"></script>
+    	<script src="content/js/plugins/masterslider.min.js"></script>
+    	<script src="content/mailer/mailer.js"></script>
+		<script src="content/js/scripts.js"></script>		
+			
+		<script type="text/javascript" src="js/jquery.i18n.properties-min-1.0.9.js"></script> 
+		<script type="text/javascript" src="content/js/libs/angular.js"></script>
+		<script type="text/javascript" src="content/js/libs/angular-route.js"></script>	
+		<script type="text/javascript" src="app/app.module.js"></script>
+		<script type="text/javascript" src="app/app.config.js"></script>		
+		<script type="text/javascript" src="app/core/core.module.js"></script>
+		<script type="text/javascript" src="app/core/MainController.js"></script>
+		<script type="text/javascript" src="app/core/LoginController.js"></script>
+		<script type="text/javascript" src="app/shared/constants.js"></script>
+		<script type="text/javascript" src="app/shared/actionUrls.js"></script>
+		<script type="text/javascript" src="app/shared/dirPagination.js"></script>
+		<script type="text/javascript" src="app/core/DataServices.js"></script>		
+		<script type="text/javascript" src="app/dashboard/DashboardController.js"></script>		
+		<script type="text/javascript" src="app/ticket/ticket.module.js"></script>
+		<script type="text/javascript" src="app/ticket/TicketListController.js"></script>
+		<script type="text/javascript" src="app/ticket/TicketDetailsController.js"></script>
+		<script type="text/javascript" src="app/ticket/CreateTicketController.js"></script>		
+		<script type="text/javascript" src="app/order/order.module.js"></script>
+		<script type="text/javascript" src="app/order/OrderListController.js"></script>
+		<script type="text/javascript" src="app/order/OrderDetailController.js"></script>
+		<script type="text/javascript" src="app/order/OrderTrackController.js"></script>
+		<script type="text/javascript" src="app/order/CheckoutController.js"></script>		
+		<script type="text/javascript" src="app/invoice/invoice.module.js"></script>	
+		<script type="text/javascript" src="app/invoice/InvoiceListController.js"></script>		
+		<script type="text/javascript" src="app/account/account.module.js"></script>
+		<script type="text/javascript" src="app/account/AccountController.js"></script>
+		<script type="text/javascript" src="app/account/RegisterController.js"></script>		
+		<script type="text/javascript" src="app/products/products.module.js"></script>
+		<script type="text/javascript" src="app/products/ProductListController.js"></script>
+		<script type="text/javascript" src="app/products/ProductDetailController.js"></script>
+		<script type="text/javascript" src="app/plans/plans.module.js"></script>
+		<script type="text/javascript" src="app/plans/planDetailsController.js"></script>
+		<script type="text/javascript" src="app/products/CompareController.js"></script>
+		<script type="text/javascript" src="app/products/CompareService.js"></script>
+		<script type="text/javascript" src="app/products/CartService.js"></script>
+		<script type="text/javascript" src="app/products/CartController.js"></script>
+		<script type="text/javascript" src="app/products/ShoppingListController.js"></script>
+		<script type="text/javascript" src="app/products/ShoppingListService.js"></script>
+		<script type="text/javascript" src="app/products/QuotationListService.js"></script>
+		<script type="text/javascript" src="app/products/ShoppingListDetailsController.js"></script>
+		<script type="text/javascript" src="app/products/QuotationListDetailsController.js"></script>
+		<script type="text/javascript" src="app/products/QuotationListController.js"></script>
+		<script type="text/javascript" src="app/products/UpdateShoppingListScheduleController.js"></script>
+		<script type="text/javascript" src="app/products/ScheduleDetailsController.js"></script>
+		<script type="text/javascript" src="app/invoice/InvoiceDetailsController.js"></script>
+		<script type="text/javascript" src="app/payment/payment.module.js"></script>
+		<script type="text/javascript" src="app/payment/PaymentController.js"></script>
+		<script type="text/javascript" src="app/shared/ValidationDirectives.js"></script>
+		<script type="text/javascript" src="js/i18n.js"></script>
+		<script type="text/javascript" src="js/base64.js"></script>		
+    	
+  </body><!--Body Close-->
+</html>
